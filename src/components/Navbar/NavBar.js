@@ -5,9 +5,9 @@ import Cart from './CartWidget';
 const NavBar = () => {
     return(        
         <header>
-            <div className='initial'>
+            <div className='flex'>
                 <img className='logo' src={logo} alt="logo"/>
-                <h1 className='title'>Fotos RK</h1>
+                <h1 className='title text-3xl pt-8'>Fotos RK</h1>
             </div>
                 <nav>
                     <a href="">Recitales</a>

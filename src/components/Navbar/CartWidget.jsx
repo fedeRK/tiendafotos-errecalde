@@ -3,8 +3,8 @@ import './Cart.css';
 
 const Cart =()=>{
     return(
-    <div>
-        <ShoppingCartIcon className='carrito'/> <span>4</span>
+    <div className='carrito'>
+        <ShoppingCartIcon/>
     </div>)}
 
 export default Cart
