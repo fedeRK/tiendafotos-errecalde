@@ -1,23 +1,42 @@
-import ItemCount from "../ItemCount";
+import { useState, useEffect } from "react";
+import zapatos from "../../data/zapatos"
+import ItemList from "./ItemList";
+import BarLoader from "react-spinners/BarLoader";
 
-function ItemListContainer(props) {
-    const {proximamente} = props;
 
-    return(
-        <>
-        <h2 style={styles.container}>Tienda en Construcción</h2> 
+const promesa = new Promise((res, rej) => {
+    setTimeout(() => {
+      res(zapatos);
+    }, 2000);
+  });
 
-        <ItemCount stock={10} initial={1}/>
-        </>       
-    );
-}
+  export default function ItemListContainer() {
 
-export default ItemListContainer;
-
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '50px'
+    const [zapatosList, setzapatosList] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        promesa.then((response) => {
+          setLoading(false);
+          setzapatosList(response);
+        });
+      }, []);
+    
+      if (loading) {
+        return (
+          
+            <BarLoader
+                color="#40a37a"
+                cssOverride={{}}
+                height={4}
+            />
+          
+        );
+      }
+      return (
+        <div>
+          <h2 className="flex justify-center mt-50">Tienda en Construcción</h2>
+          <ItemList zapatos={zapatosList} />
+        </div>
+      );
     }
-}

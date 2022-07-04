@@ -7,12 +7,12 @@ const NavBar = () => {
         <header>
             <div className='flex'>
                 <img className='logo' src={logo} alt="logo"/>
-                <h1 className='title text-3xl pt-8'>Fotos RK</h1>
+                <h1 className='title text-3xl pt-8'>Zapatos RK</h1>
             </div>
                 <nav>
-                    <a href="">Recitales</a>
-                    <a href="">Macro</a>
-                    <a href="">Paisajes</a>
+                    <a href="">Zapatillas</a>
+                    <a href="">Borcegos</a>
+                    <a href="">Zapatos</a>
                 </nav>
                 <Cart/>
         </header>
