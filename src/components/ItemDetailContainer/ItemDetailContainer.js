@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
-import zapatos from "../../data/zapatos"
-import ItemList from "./ItemList";
+import Macerata from "../../data/Macerata"
+import ItemDetail from "./ItemDetail";
 import BarLoader from "react-spinners/BarLoader";
 
 
 const promesa = new Promise((res, rej) => {
     setTimeout(() => {
-      res(zapatos);
+      res(Macerata);
     }, 2000);
   });
 
-  export default function ItemListContainer() {
+export default function ItemDetailContainer () {
 
-    const [zapatosList, setzapatosList] = useState([]);
+    const [zapatoItem, setZapatoItem] = useState({});
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true);
         promesa.then((response) => {
           setLoading(false);
-          setzapatosList(response);
+          setZapatoItem(response);
         });
       }, []);
-    
+
       if (loading) {
         return (          
             <BarLoader
@@ -34,7 +34,7 @@ const promesa = new Promise((res, rej) => {
       return (
         <div>
           <h2 className="flex justify-center mt-50">Tienda en Construcción</h2>
-          <ItemList zapatos={zapatosList} />
+          <ItemDetail zapato={zapatoItem} />
         </div>
       );
     }
