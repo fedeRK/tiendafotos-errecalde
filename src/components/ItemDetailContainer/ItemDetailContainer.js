@@ -1,26 +1,32 @@
 import { useState, useEffect } from "react";
-import Macerata from "../../data/Macerata"
+import zapatos from "../../data/zapatos"
 import ItemDetail from "./ItemDetail";
 import BarLoader from "react-spinners/BarLoader";
+import { useParams } from "react-router-dom";
 
 
 const promesa = new Promise((res, rej) => {
     setTimeout(() => {
-      res(Macerata);
+      res(zapatos);
     }, 2000);
   });
 
 export default function ItemDetailContainer () {
 
+  const {itemId} = useParams();
+
+
     const [zapatoItem, setZapatoItem] = useState({});
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        setLoading(true);
-        promesa.then((response) => {
-          setLoading(false);
-          setZapatoItem(response);
-        });
-      }, []);
+      promesa.then((data) =>{
+      const getData = data[itemId]
+      setZapatoItem(getData)
+      setLoading(false)
+      }).catch(() =>{
+          console.log('todo mal')
+      })
+  }, [itemId]);
 
       if (loading) {
         return (          
@@ -33,7 +39,6 @@ export default function ItemDetailContainer () {
       }
       return (
         <div>
-          <h2 className="flex justify-center mt-50">Tienda en Construcción</h2>
           <ItemDetail zapato={zapatoItem} />
         </div>
       );

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import zapatos from "../../data/zapatos"
 import ItemList from "./ItemList";
 import BarLoader from "react-spinners/BarLoader";
+import { useParams } from "react-router-dom";
 
 
 const promesa = new Promise((res, rej) => {
@@ -12,16 +13,25 @@ const promesa = new Promise((res, rej) => {
 
   export default function ItemListContainer() {
 
+    const {categoryName} = useParams();
+
     const [zapatosList, setzapatosList] = useState([]);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        promesa.then((response) => {
-          setLoading(false);
-          setzapatosList(response);
-        });
-      }, []);
+    const [loading, setLoading] = useState(true);
     
+    useEffect(() => {
+      console.log(categoryName)
+        setLoading(true);
+
+        promesa.then((data) =>{
+          const getCategory = data.filter(data => data.category === categoryName)
+          categoryName ? setzapatosList(getCategory) : setzapatosList(data) 
+          setLoading(false)
+          }).catch(() =>{
+              console.log('salio mal')
+          })
+      }, [categoryName]);
+
+
       if (loading) {
         return (          
             <BarLoader

@@ -1,4 +1,6 @@
 import '../../index.css';
+import ItemCount from "../ItemCount";
+
 
 
 export default function ItemDetail( {zapato}) {
@@ -8,6 +10,8 @@ export default function ItemDetail( {zapato}) {
         <img className=" flex-wrap rounded-t-lg" src={zapato.pictureURL}/>
         <p className='m-2'>{zapato.description}</p>
         <h2 className="text-3xl m-5">${zapato.price}</h2>
+        <ItemCount stock={10} initial={1}/>
+
       </div>
     );
   }
