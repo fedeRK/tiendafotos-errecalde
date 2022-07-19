@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../../index.css';
 import ItemCount from "../ItemCount";
-
+import {CartContext} from "../../Context/CartContext";
 
 
 export default function ItemDetail({zapato}) {
 
     const [finalized, setFinalized] = useState(false)
+    const { addItem } = useContext(CartContext)
 
     const onAdd = (cuenta) => {
+      addItem({...zapato, qty: cuenta});
       setFinalized(true);
-      console.log(`Se agregaron ${cuenta} modelo ${zapato.title} al carrito`);
     };
 
     return (

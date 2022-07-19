@@ -3,6 +3,8 @@ import zapatos from "../../data/zapatos"
 import ItemList from "./ItemList";
 import BarLoader from "react-spinners/BarLoader";
 import { useParams } from "react-router-dom";
+import { db } from "../../firebase/firebase";
+import {getDocs, collection, query, where} from "firebase/firestore";
 
 
 const promesa = new Promise((res, rej) => {
