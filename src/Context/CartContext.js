@@ -1,5 +1,4 @@
 import React, {createContext, useEffect, useState} from "react"
-import zapatos from "../data/zapatos";
 
 export const CartContext = createContext ();
 const {Provider} = CartContext;        
@@ -9,13 +8,12 @@ const CustomProvider = ({children})=> {
 
     const getQtyProducts = ()=>{
       let qty = 0;
-      products.forEach (product => qty += product.qty);
+      products.forEach (product => {qty += product.qty;});
       setQtyProducts(qty);
     }
 
     useEffect(()=>{
       getQtyProducts();
-console.log (products)
     }, [products]);
 
     const addItem = (product) => {
@@ -28,25 +26,25 @@ console.log (products)
       } else {
         setProducts ([...products, product]);
       }
-        console.log ("se agrega un producto")
       }
 
       const removeItem = (id) => {
         setProducts(products.filter(product => product.id !== id));
-        console.log("se elimina un producto")
       }
     
       const clear = ()=> {
         setProducts([]);
-        console.log("se resetea el carrito");
       }
     
       const isInCart = (id) => {
-        console.log ("verifica si esta en el carrito"); 
+      }
+
+      const totalPrice = () => {
+        return products.reduce((acc, product) => acc + product.price*product.qty,0)
       }
 
             return (
-                <Provider value={{products, addItem, removeItem, clear, qtyProducts}}>
+                <Provider value={{products, addItem, removeItem, clear, qtyProducts, totalPrice}}>
                     {children}
                 </Provider>
                 )            
