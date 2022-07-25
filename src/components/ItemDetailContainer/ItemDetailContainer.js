@@ -1,32 +1,36 @@
 import { useState, useEffect } from "react";
-import zapatos from "../../data/zapatos"
 import ItemDetail from "./ItemDetail";
 import BarLoader from "react-spinners/BarLoader";
 import { useParams } from "react-router-dom";
+import { db } from "../../firebase/firebase";
+import { getDoc, collection, doc } from "firebase/firestore";
 
 
-const promesa = new Promise((res, rej) => {
-    setTimeout(() => {
-      res(zapatos);
-    }, 2000);
-  });
 
 export default function ItemDetailContainer () {
 
   const {itemId} = useParams();
-
-
     const [zapatoItem, setZapatoItem] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-      promesa.then((data) =>{
-      const getData = data[itemId]
-      setZapatoItem(getData)
-      setLoading(false)
-      }).catch(() =>{
-          console.log('todo mal')
+      const productCollection = collection(db, "productos");
+      const refDoc = doc(productCollection, itemId);
+      getDoc(refDoc)
+      .then(result => {
+        const producto = {
+          id: result.id,
+          ...result.data(),
+        }
+        setZapatoItem(producto);
       })
-  }, [itemId]);
+      
+      .catch(() => console.log("Algo salió mal"))
+      .finally(()=> setLoading (false))
+  },[itemId])
+
+
+
 
       if (loading) {
         return (          
