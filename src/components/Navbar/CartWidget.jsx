@@ -7,12 +7,10 @@ const Cart =()=>{
     const {qtyProducts} = useContext (CartContext);
 
     return(
-    <>
-        <div className='carrito'>
+    
+        <div className='carrito flex'>
             <ShoppingCartIcon/>
-        </div>
-        
-        {qtyProducts>0 && <p>{qtyProducts}</p>}
-    </>)}
+            {qtyProducts>0 && <p className='cartCount'>{qtyProducts}</p>}</div>
+    )}
 
 export default Cart

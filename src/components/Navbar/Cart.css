@@ -3,4 +3,8 @@
     color: #40a37a;
     padding-right: 5px;
 }
-
+.cartCount{
+    font-size: 15px;
+    padding-left: 5px;
+    font-weight: 500;
+}

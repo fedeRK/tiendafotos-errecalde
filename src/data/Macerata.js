@@ -1,2 +1,0 @@
-const Macerata= {id:0, title:'MACERATA-BC | SUELA', description:"Zapatilla de cuero vacuno con detalle en laterales picado. Forrado en cuero vacuno. Suela bicolor. ¡DEVOLVELO GRATIS! Si no te gustó o no te convence, podés devolverlo cuando quieras.", price:12000, pictureURL:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/129/822/products/pasotti50741-4c1f970461b318ef1b16485838229618-1024-1024.jpg"}
-export default Macerata;
