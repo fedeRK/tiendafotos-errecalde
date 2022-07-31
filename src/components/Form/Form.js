@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import { CartContext } from "../../Context/CartContext"
 import {db} from '../../firebase/firebase'
-import {addDoc, collection, serverTimestamp, getDoc, doc, getDocs} from 'firebase/firestore'
+import {addDoc, collection, serverTimestamp, getDocs, query, orderBy, limit} from 'firebase/firestore'
 import { Link } from "react-router-dom"
 
 
@@ -14,6 +14,8 @@ const Form = ()=>  {
         phone:'',
         creditCard:''
     }
+    const [orderId, setOrderId] = useState(null);
+
     const [datos, setDatos] = useState(formulario)
 
     const capturarDatos = (e)=> {
@@ -24,16 +26,45 @@ const Form = ()=>  {
         e.preventDefault();
         try {
             await addDoc (collection(db,'ventas'),{
-                ...datos,  items: products, price:totalPrice(), date: serverTimestamp()
+                ...datos, 
+                items: products, 
+                price:totalPrice(), 
+                date: serverTimestamp()
             })
+
+            const q = query(collection(db, "ventas"), orderBy("date", "desc"), limit(1));
+
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+            setOrderId(doc.id);
+            });
+
+
+            
+            clear();
+
         } catch (error) {
             console.log(error);
         }
 
         setDatos({...formulario})
     }
+    
 
+if (orderId){
   return(
+        <>
+        <div className="py-5 text-center mt-5">
+            <h2 className="mt-5">¡Gracias por elegirnos!</h2>
+            <h4 className="my-5">La compra se ha realizado exitosamente.</h4>
+            <strong>El numero de tu orden es {orderId}</strong> <br/>
+            <Link className="btn btn-outline-primary m-3" to={`/`}>
+            <p className="text-red-600">Volver al Inicio</p>
+            </Link>
+        </div>
+    </>)}
+
+    return (
         <>
         <h1>Formulario de Pago</h1>
         <form onSubmit={guardarDatos}>
@@ -51,7 +82,9 @@ const Form = ()=>  {
             type="number" onChange={capturarDatos} value={datos.formCard} required/>
             <button className='form-submit'>Pagar Ahora</button>
         </form>
-    </>)
+    </>
+    )
+
 }
 
 
