@@ -25,8 +25,7 @@ const CustomProvider = ({children})=> {
         setProducts(aux);
       } else {
         setProducts ([...products, product]);
-      }
-      }
+      }}
 
       const removeItem = (id) => {
         setProducts(products.filter(product => product.id !== id));

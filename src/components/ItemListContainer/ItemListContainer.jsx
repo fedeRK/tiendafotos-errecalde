@@ -34,7 +34,6 @@ import {getDocs, collection, query, where} from "firebase/firestore";
       })
       },[categoryName]);
 
-
       if (loading) {
         return (          
             <BarLoader

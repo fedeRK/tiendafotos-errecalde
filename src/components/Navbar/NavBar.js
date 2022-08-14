@@ -13,15 +13,13 @@ const NavBar = () => {
     return(        
         <header>
             <div className='flex'>
-                <Link to={"/"}><img className='logo' src={logo} alt="logo"/></Link>
-                
+                <Link to={"/"}><img className='logo' src={logo} alt="logo"/></Link>                
                 <h1 className='title text-3xl pt-8'>Zapatos del Bahiano</h1>
             </div>
                 <nav>
                     {categorias.map((categoria) => <NavLink key={categoria.id} to={categoria.route}className={categoria.className}>{categoria.name}</NavLink>)}
                 </nav>
-                <Link to={"/cart"}><Cart/></Link>
-                
+                <Link to={"/cart"}><Cart/></Link>                
         </header>
     )
 }

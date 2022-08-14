@@ -9,7 +9,7 @@ import { getDoc, collection, doc } from "firebase/firestore";
 
 export default function ItemDetailContainer () {
 
-  const {itemId} = useParams();
+    const {itemId} = useParams();
     const [zapatoItem, setZapatoItem] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -27,10 +27,7 @@ export default function ItemDetailContainer () {
       
       .catch(() => console.log("Algo salió mal"))
       .finally(()=> setLoading (false))
-  },[itemId])
-
-
-
+      },[itemId])
 
       if (loading) {
         return (          
