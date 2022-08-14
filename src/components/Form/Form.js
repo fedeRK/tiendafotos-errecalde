@@ -58,8 +58,8 @@ if (orderId){
     </>)}
 
     return (
-        <div class="flex justify-center w-full bg-blue-400">
-            <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+        <div className="flex justify-center w-full bg-blue-400">
+            <div className="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
             <h1 className="mb-5">Formulario de Pago</h1>
                 <form onSubmit={guardarDatos} className="d-flex">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Nombre</label>
