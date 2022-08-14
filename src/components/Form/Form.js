@@ -66,22 +66,30 @@ if (orderId){
 
     return (
         <>
-        <h1>Formulario de Pago</h1>
-        <form onSubmit={guardarDatos}>
-            <input name="name" className="form-control"
+        <div class="flex justify-center w-full bg-blue-400">
+    <div class="w-1/2 bg-white rounded shadow-2xl p-8 m-4">
+        <h1 className="mb-5">Formulario de Pago</h1>
+        <form onSubmit={guardarDatos} className="d-flex">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Nombre</label>
+            <input name="name" className="form-control mb-2"
             placeholder="Ingrese su Nombre"
             type="text" onChange={capturarDatos} value={datos.formName} required/>
-            <input name= "email" className="form-control"
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">E-mail</label>
+            <input name= "email" className="form-control mb-2"
              placeholder="Ingrese su Email"
              type="email" onChange={capturarDatos} value={datos.formEmail} required/>
-            <input name="phone" className="form-control"
+             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Teléfono</label>
+            <input name="phone" className="form-control mb-2"
             placeholder="Telefono de contacto"
             type="number" onChange={capturarDatos} value={datos.formPhone} required/>
-            <input name="creditCard" className="form-control"
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Tarjeta de Crédito</label>
+            <input name="creditCard" className="form-control mb-5 block"
             placeholder="Ingrese el numero de Tarjeta"
             type="number" onChange={capturarDatos} value={datos.formCard} required/>
-            <button className='form-submit'>Pagar Ahora</button>
+            <button className='form-submit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Finalizar Compra</button></Link>  <Link to="/"><button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'>Pagar Ahora</button>
         </form>
+        </div>
+        </div>
     </>
     )
 

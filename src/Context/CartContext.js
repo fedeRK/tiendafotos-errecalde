@@ -19,7 +19,7 @@ const CustomProvider = ({children})=> {
     const addItem = (product) => {
       if (isInCart(product.id)) {
         const found = products.find(p => p.id === product.id);
-        const index = product.indexOf (found);
+        const index = products.indexOf (found);
         const aux = [...products];
         aux[index].qty += product.qty;
         setProducts(aux);
@@ -37,6 +37,7 @@ const CustomProvider = ({children})=> {
       }
     
       const isInCart = (id) => {
+        return products.some(product => product.id === id)
       }
 
       const totalPrice = () => {
